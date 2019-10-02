@@ -1,0 +1,14 @@
+
+
+/* 
+  xxx-enter   xxx 即 CSSTransition标签上classNames的值
+*/
+
+.boss-text-enter { opacity: 0; }
+.boss-text-enter-active { opacity: 1; transition: opacity 2s ease-in; }
+.boss-text-enter-done {opacity: 1;}
+
+
+.boss-text-exit { opacity: 1; }
+.boss-text-exit-active { opacity: 0;transition: opacity 2s ease-in; }
+.boss-text-exit-done { opacity: 0; }
