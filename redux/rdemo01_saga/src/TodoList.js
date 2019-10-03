@@ -7,8 +7,7 @@ import {
   changeInputAction,
   addItemAction,
   delItemAction,
-  // getListAction,
-  getTodoList,
+  getMyListAction
 } from "./store/actionCreators";
 import TodoListUI from "./TodoListUI";
 // import axios from 'axios'
@@ -25,12 +24,11 @@ class TodoList extends Component {
     store.subscribe(this.storeChange)
     this.clickBtn = this.clickBtn.bind(this)
     this.delItem = this.delItem.bind(this)
-    this.getList = this.getList.bind(this)
   }
   componentDidMount() {
-    // this.getList();
-    const action = getTodoList()
+    const action = getMyListAction()
     store.dispatch(action)
+    console.log(action);
   }
   render() {
     return (
@@ -52,19 +50,6 @@ class TodoList extends Component {
     // };
     const action = changeInputAction(e.target.value);
     store.dispatch(action);
-  }
-
-  getList() {
-    // axios
-    // .get("https://www.easy-mock.com/mock/5d92ff5c68fbce0e4ca78b1f/ReactDemo01/xjj")
-    // .then(res=>{
-    //   const action = getListAction(res.data.data)
-    //   store.dispatch(action)
-    // })
-    // .catch(error=>{
-    //   console.log(error);
-    // })
-
   }
 
   storeChange() {

@@ -1,4 +1,4 @@
-import { CHANGE_INPUT, ADD_ITEM, DEL_ITEM, GET_LIST } from "./actionTypes";
+import { CHANGE_INPUT, ADD_ITEM, DEL_ITEM, GET_LIST, GET_MY_LIST } from "./actionTypes";
 import axios from "axios";
 import store from "./index";
 
@@ -38,3 +38,7 @@ export const getTodoList = () => {
       });
   };
 };
+
+export const getMyListAction = () => ({
+  type: GET_MY_LIST
+})

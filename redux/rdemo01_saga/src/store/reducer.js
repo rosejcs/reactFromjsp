@@ -39,7 +39,6 @@ export default (state = defaultState, action) => {
     return newState
   }
 
-  // if(action.type===GET_TODOLIST)
 
 
   return state;
