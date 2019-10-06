@@ -1,35 +1,49 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Index from "./Pages/Index";
+import Workplace from './Pages/Workplace'
+import Video from './Pages/Video'
+import './index.css'
 
-import Index from './Pages/Index'
-import List from './Pages/List'
-
-
-// function Index() {
-//   return <h2>JSPANG.com</h2>
-// }
-
-// function List() {
-//   return <h2>List-page</h2>
-// }
-
-// 设置规则 --- 传递值 --- 接收值--- 显示内容
-
-
-
-function AppRouter() {
-  return (
-
-    <Router>
-      <ul>
-        <li><Link to="/">首页</Link></li>
-        <li><Link to="/list/345">列表</Link></li>
-      </ul>
-      {/* exact 精确匹配,一般首页需要 */}
-      <Route path="/" exact component={Index} />
-      <Route path="/list/:id" component={List} />
-    </Router>
-  )
+class AppRouter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    let routeConfig = [
+      {path:'/',title:'博客首页',exact:true,component:Index},
+      {path:'/video',title:'视频教程',exact:false,component:Video},
+      {path:'/workplace',title:'职场技能',exact:false,component:Workplace}
+    ]
+    return (
+      <Router>
+        <div className="mainDiv">
+          <div className="leftNav">
+            <h3>一级导航</h3>
+            <ul>
+              {
+                routeConfig.map((item,index)=>{
+                  return (
+                    <li key={index+item}><Link to={item.path}>{item.title}</Link></li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+          <div className="rightMain">
+            {
+              routeConfig.map((item, index)=>{
+                return (
+                  <Route path={item.path} exact={item.exact} component={item.component} key={index+item} />
+                )
+              })
+            }
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default AppRouter
+export default AppRouter;
