@@ -1,8 +1,10 @@
-import React, { useState, useContext, useReducer } from 'react'
+import React, { useContext } from 'react'
+import { ColorContext } from './color'
 
 function ShowArea() {
+  const { color } = useContext(ColorContext)
   return (
-    <div style={{color: 'blue'}}>字体颜色为blue</div>
+    <div style={{color}}>字体颜色为{color}</div>
   )
 }
 
