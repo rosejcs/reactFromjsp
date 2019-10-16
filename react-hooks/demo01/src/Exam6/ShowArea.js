@@ -5,6 +5,8 @@ function ShowArea() {
   const { color } = useContext(ColorContext)
   
   return (
-    <h2 style={{color}}>字体颜色为{ color }</h2>
+    <h2 style={{color:color}}>字体颜色为{ color }</h2>
   )
 }
+
+export default ShowArea
