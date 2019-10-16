@@ -1,5 +1,5 @@
 import React from 'react'
-import ShowArea from '../../src-hooks/Example6/ShowArea'
+import ShowArea from './ShowArea'
 import Buttons from './Buttons'
 import { Color } from './Color'
 

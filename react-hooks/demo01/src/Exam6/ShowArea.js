@@ -8,3 +8,5 @@ function ShowArea() {
     <h2 style={{color}}>字体颜色为{ color }</h2>
   )
 }
+
+export default ShowArea

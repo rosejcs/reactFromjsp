@@ -8,12 +8,12 @@ const reducer = (state, action) => {
     case UPDATE_COLOR:
       return action.color
     default:
-      return state.color
+      return state
   }
 }
 
 export const Color = props => {
-  const [ color,dispatch ] = useReducer(reducer,{color:'blue'})
+  const [ color,dispatch ] = useReducer(reducer,'blue')
 
   return (
     <ColorContext.Provider value={{color, dispatch}}>
