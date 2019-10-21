@@ -1,88 +1,119 @@
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React from "react";
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel='icon' href='/favicon.ico' />
-    </Head>
+/* import Jspang from "../components/jspang";
 
-    <Nav />
+function Home() {
+  return <Jspang>这里是要给Jcs组件传递的参数children,呵呵</Jspang>;
+} */
 
-    <div className='hero'>
-      <h1 className='title'>Welcome to Next.js!</h1>
-      <p className='description'>
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+// Link的使用
+import Link from "next/link";
 
-      <div className='row'>
-        <a href='https://nextjs.org/docs' className='card'>
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href='https://nextjs.org/learn' className='card'>
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href='https://github.com/zeit/next.js/tree/master/examples'
-          className='card'
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
+import Router from "next/router";
+const Home = () => {
+  function gotoA() {
+    Router.push("/jcsA");
+  }
+
+// Lazy Loading 
+
+
+  function gotoXjj() {
+    // Router.push('/xiaojiejie?name=囧空')
+    Router.push({
+      pathname: "/xiaojiejie",
+      query: {
+        name: "囧空"
+      }
+    });
+  }
+
+  // routeChangeStart
+  // routeChangeComplete
+  // beforeHistoryChange
+  // routeChangeError
+  // hashChangeStart
+  // hashChangeComplete
+
+  Router.events.on(
+    "routeChangeStart",
+    (...args) => {
+      console.log("1.routeChangeStart-->路由开始变化,参数为: ", ...args);
+    }
+  );
+  Router.events.on(
+    "routeChangeComplete",
+    (...args) => {
+      console.log("2.routeChangeComplete-->路由变化结束,参数: ", ...args);
+    }
+  );
+  Router.events.on(
+    "beforeHistoryChange",
+    (...args) => {
+      console.log("3.beforeHistoryChange-->History变化前,参数为: ", ...args);
+    }
+  );
+  // 404的错误不算
+  Router.events.on(
+    "routeChangeError",
+    (...args) => {
+      console.log("4.routeChangeError-->路由发生错误,参数: ", ...args);
+    }
+  );
+  Router.events.on(
+    "hashChangeStart",
+    (...args) => {
+      console.log("5.hashChangeStart-->路由hash开始,参数: ", ...args);
+    }
+  );
+  Router.events.on(
+    "hashChangeComplete",
+    (...args) => {
+      console.log("6.hashChangeComplete-->路由hash完成,参数: ", ...args);
+    }
+  );
+  
+  return (
+    <>
+      <h1>Index page</h1>
+      <div>
+        <Link href="/jcsA">
+          <a> go A </a>
+        </Link>
       </div>
-    </div>
+      <div>
+        <Link href="/jcsB">
+          <a> go B </a>
+        </Link>
+      </div>
+      {/* <button onClick={()=>{Router.push('/jcsA')}}>go A(use Router)</button> */}
+      <button onClick={gotoA}>go A(use Router)</button>
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </div>
-)
+      {/* query 传参 */}
+      <div>
+        <Link href="/xiaojiejie?name=波多">
+          <a>波多</a>
+        </Link>
+      </div>
+      <div>
+        <Link href="/xiaojiejie?name=囧空">
+          <a>囧空</a>
+        </Link>
+      </div>
+      {/* 跳转传参 */}
+      <div>
+        <button onClick={gotoXjj}>选 囧空</button>
+      </div>
 
-export default Home
+      <Link href={{ pathname: "/xiaojiejie", query: { name: "结衣" } }}>
+        <a>选 结衣</a>
+      </Link>
+      <div>
+        <Link href="#jcsA"><a>Hash A</a></Link>
+      </div>
+      
+    </>
+  );
+};
+
+export default Home;
