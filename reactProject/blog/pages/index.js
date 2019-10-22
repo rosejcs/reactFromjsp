@@ -3,6 +3,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Author from '../components/Author'
 import Advert from '../components/Advert'
+import Footer from '../components/Footer'
 import { Row, Col, List, Icon } from "antd";
 import "../public/style/pages/index.css";
 const Home = () => {
@@ -59,6 +60,7 @@ const Home = () => {
           </Col>
         </Row>
       </div>
+      <Footer />
     </>
   );
 };
