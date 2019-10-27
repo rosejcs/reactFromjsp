@@ -11,6 +11,8 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.24.2",
     "babel-plugin-import": "^1.12.2",
+    "egg-init": "^1.17.2",
+    "global": "^4.4.0",
     "markdown-navbar": "^1.0.7",
     "next": "9.1.1",
     "react": "16.10.2",
